@@ -41,8 +41,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'corsheaders'
+    "django.contrib.sites",  # new
+    # 3rd party
+    "corsheaders",
+    "rest_framework",  # new
+    "rest_framework.authtoken",  # new
+    "allauth",  # new
+    "allauth.account",  # new
+    "allauth.socialaccount",  # new
+    "dj_rest_auth",  # new
+    "dj_rest_auth.registration",  # new
 ]
+# ^^ need pip install django-cors-headers, dj-rest-auth and django-allauth
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -134,3 +145,16 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = 'index'
 LOGIN_URL = 'login'
+
+REST_FRAMEWORK = {  # new
+    "DEFAULT_PERMISSION_CLASSES": [  # new
+        "rest_framework.permissions.AllowAny",  # new
+    ],
+    "DEFAULT_AUTHENTICATION_CLASSES": [  # new
+        "rest_framework.authentication.SessionAuthentication",  # new
+        "rest_framework.authentication.TokenAuthentication",  # new
+    ],
+}
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"  # new
+SITE_ID = 1  # new
